@@ -22,6 +22,8 @@ open class WSTagsField: UIScrollView {
         return false
     }
 
+    fileprivate var showsMoreTag: Bool = false
+    
     open override var tintColor: UIColor! {
         didSet { tagViews.forEach { $0.tintColor = self.tintColor } }
     }
