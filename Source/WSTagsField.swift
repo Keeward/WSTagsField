@@ -221,12 +221,19 @@ open class WSTagsField: UIScrollView {
     open func addTag(_ tag: String) {
         addTag(WSTag(tag))
     }
-
-    open func addTag(_ tag: WSTag) {
+    
+    open func addTag(_ tag: WSTag, handleMoreTags: Bool = true) {
         if self.tags.contains(tag) { return }
 
         self.tags.append(tag)
 
+        guard canAddTagViews else {
+            if handleMoreTags {
+                refreshMoreTagIfNeeded()
+            }
+            return
+        }
+        
         let tagView = WSTagView(tag: tag)
         tagView.font = self.font
         tagView.tintColor = self.tintColor
