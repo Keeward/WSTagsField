@@ -28,6 +28,12 @@ open class WSTagsField: UIScrollView {
      Throughout this implementation this idea is a base
      */
     public typealias MoreTagConfiguration = (maximumTags: Int, moreTagTitle: String, moreTagColors: (fill: UIColor, border: UIColor, text: UIColor))
+    /// Set the readOnly flag to true
+    open var moreTagConfiguration: MoreTagConfiguration? {
+        didSet {
+            readOnly = true
+        }
+    }
     
     open override var tintColor: UIColor! {
         didSet { tagViews.forEach { $0.tintColor = self.tintColor } }
