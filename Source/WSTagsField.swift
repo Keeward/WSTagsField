@@ -371,6 +371,30 @@ open class WSTagsField: UIScrollView {
 
 // MARK: More Tag Helpers
 extension WSTagsField {
+    fileprivate func refreshMoreTagIfNeeded() {
+        // If should display more tag
+        guard let moreTagConfiguration = moreTagConfiguration else {
+            removeMoreTagIfNeeded()
+            return
+        }
+        // If needs to display more tag
+        guard tags.count > moreTagConfiguration.maximumTags else {
+            removeMoreTagIfNeeded()
+            return
+        }
+        
+        guard let moreTagView = addMoreTag() else {
+            return
+        }
+        
+        // Update more tag display text
+        var numberOfHiddenTags = tags.count - moreTagConfiguration.maximumTags
+        moreTagView.displayText = "\(numberOfHiddenTags) \(moreTagConfiguration.moreTagTitle)"
+        
+        updatePlaceholderTextVisibility()
+        repositionViews()
+    }
+    
     fileprivate func addMoreTag() -> WSTagView? {
         // If it is already added get the present instance
         guard !showsMoreTag else {
