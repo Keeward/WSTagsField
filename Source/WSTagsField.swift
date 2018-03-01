@@ -32,6 +32,7 @@ open class WSTagsField: UIScrollView {
     open var moreTagConfiguration: MoreTagConfiguration? {
         didSet {
             readOnly = true
+            refreshView()
         }
     }
     
