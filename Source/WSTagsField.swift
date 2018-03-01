@@ -215,7 +215,8 @@ open class WSTagsField: UIScrollView {
     }
 
     open func addTags(_ tags: [WSTag]) {
-        tags.forEach { addTag($0) }
+        tags.forEach({ addTag($0, handleMoreTags: false) })
+        refreshMoreTagIfNeeded()
     }
 
     open func addTag(_ tag: String) {
