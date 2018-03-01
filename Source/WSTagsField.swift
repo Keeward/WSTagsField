@@ -302,6 +302,7 @@ open class WSTagsField: UIScrollView {
         self.tags.remove(at: index)
         onDidRemoveTag?(self, removedTag)
 
+        refreshMoreTagIfNeeded()
         updatePlaceholderTextVisibility()
         repositionViews()
     }
