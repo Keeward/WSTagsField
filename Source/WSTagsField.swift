@@ -369,6 +369,24 @@ open class WSTagsField: UIScrollView {
     }
 }
 
+// MARK: More Tag Helpers
+extension WSTagsField {
+    fileprivate func moreTagViewInstance(_ configuration: MoreTagConfiguration) -> WSTagView {
+        let tag = WSTag(configuration.moreTagTitle)
+        let colors = configuration.moreTagColors
+        
+        let tagView = WSTagView(tag: tag)
+        tagView.font = self.font
+        tagView.tintColor = colors.fill
+        tagView.textColor = colors.text
+        tagView.layer.borderColor = colors.border.cgColor
+        tagView.selectedColor = self.selectedColor
+        tagView.selectedTextColor = self.selectedTextColor
+        tagView.layer.borderWidth = 1.0
+        return tagView
+    }
+}
+
 // MARK: TextField Properties
 extension WSTagsField {
     public var keyboardType: UIKeyboardType {
