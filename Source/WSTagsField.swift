@@ -23,6 +23,11 @@ open class WSTagsField: UIScrollView {
     }
 
     fileprivate var showsMoreTag: Bool = false
+    /**
+     Keep in mind, that the more tag is always displayed as the last tag
+     Throughout this implementation this idea is a base
+     */
+    public typealias MoreTagConfiguration = (maximumTags: Int, moreTagTitle: String, moreTagColors: (fill: UIColor, border: UIColor, text: UIColor))
     
     open override var tintColor: UIColor! {
         didSet { tagViews.forEach { $0.tintColor = self.tintColor } }
