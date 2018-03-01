@@ -371,6 +371,30 @@ open class WSTagsField: UIScrollView {
 
 // MARK: More Tag Helpers
 extension WSTagsField {
+    fileprivate func removeMoreTagIfNeeded() {
+        guard showsMoreTag,
+            let moreTag = tagViews.last,
+            let index = tagViews.index(of: moreTag) else {
+                return
+        }
+        
+        let removalBlock = {
+            moreTag.removeFromSuperview()
+            self.tagViews.remove(at: index)
+            
+            self.updatePlaceholderTextVisibility()
+            self.repositionViews()
+        }
+        
+        if let maximumTags = moreTagConfiguration?.maximumTags {
+            if tags.count <= maximumTags {
+                removalBlock()
+            }
+        } else {
+            removalBlock()
+        }
+    }
+    
     fileprivate func moreTagViewInstance(_ configuration: MoreTagConfiguration) -> WSTagView {
         let tag = WSTag(configuration.moreTagTitle)
         let colors = configuration.moreTagColors
