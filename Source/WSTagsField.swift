@@ -196,6 +196,12 @@ open class WSTagsField: UIScrollView {
     }
 
     // MARK: - Adding / Removing Tags
+    fileprivate func refreshView() {
+        let currentTags = tags
+        removeTags()
+        addTags(currentTags)
+    }
+    
     open func addTags(_ tags: [String]) {
         tags.forEach { addTag($0) }
     }
