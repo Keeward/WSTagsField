@@ -36,6 +36,13 @@ open class WSTagsField: UIScrollView {
         }
     }
     
+    open var canAddTagViews: Bool {
+        guard let maximumTags = moreTagConfiguration?.maximumTags else {
+            return true
+        }
+        return tagViews.count < maximumTags
+    }
+    
     open override var tintColor: UIColor! {
         didSet { tagViews.forEach { $0.tintColor = self.tintColor } }
     }
